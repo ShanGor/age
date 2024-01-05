@@ -43,6 +43,20 @@
 #include "catalog/pg_type.h"
 #include "utils/graphid.h"
 
+#ifndef HAVE_STRNDUP
+char *strndup(const char *s, size_t len) {
+    char *dup = (char *)malloc(len + 1);
+    if (dup == NULL) {
+        return NULL;  // Handle error if memory allocation fails
+    }
+    memcpy(dup, s, len);
+    dup[len] = '\0';
+    return dup;
+}
+#define HAVE_STRNDUP 1
+#endif
+
+
 /* Tokens used when sequentially processing an agtype value */
 typedef enum
 {
@@ -568,3 +582,6 @@ void clear_global_Oids_AGTYPE(void);
 #define AGTYPEARRAYOID get_AGTYPEARRAYOID()
 
 #endif
+
+
+

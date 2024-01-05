@@ -35,7 +35,7 @@ int cypher_yylex(YYSTYPE *lvalp, YYLTYPE *llocp, ag_scanner_t scanner)
         0,
         INTEGER,
         DECIMAL,
-        STRING,
+        CG_STRING,
         IDENTIFIER,
         PARAMETER,
         NOT_EQ,
