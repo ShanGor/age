@@ -61,6 +61,12 @@ However, Apache AGE does not provide Windows support, the tutorials are based on
 This project is a fork of the [Apache AGE](https://github.com/apache/age) project. To provide Windows distribution for the Apache AGE project.
 It will provide a binary package for Windows, along with PostgreSQL 17 and PGVector 0.8.0.
 
+# Release
+Please navigate to the [release page](https://github.com/ShanGor/apache-age-windows/releases/tag/PG17%2Fv1.5.0-rc0) and download:
+- `pgsql17-mingw64-x86_64-min.7z`: Minimal runnable package, without ssl or icu support etc. (The package compiled with those dependencies are not included)
+- `pgsql17-mingw64-x86-dependencies.7z`: Dependencies to enable the PG with icu, ssl, lz4, zstd etc. You can extract the files to the PG folder, or just copy those DLL files.
+- `pgAdmin4-8.14-windows-x86_64.7z`: `pgAdmin 4` v8.14 for Windows.
+
 # Steps to compile if you want to do it on your machine:
 1. Install MSYS2-MINGW64, and install the following packages:
    ```
@@ -72,8 +78,8 @@ It will provide a binary package for Windows, along with PostgreSQL 17 and PGVec
    `pacman -S mingw-w64-x86_64-postgresql`
 3. Checkout the source and build:
   ```
-  git clone --branch "PG17/Windows" https://github.com/ShanGor/age.git
-  cd age
+  git clone --branch "PG17/Windows" https://github.com/ShanGor/apache-age-windows.git
+  cd apache-age-windows
   make install
   ```
 
