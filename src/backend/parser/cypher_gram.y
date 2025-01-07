@@ -2896,7 +2896,7 @@ static char *create_unique_name(char *prefix_name)
 {
     char *name = NULL;
     char *prefix = NULL;
-    uint nlen = 0;
+    unsigned int nlen = 0;
     unsigned long unique_number = 0;
 
     /* get a unique number */

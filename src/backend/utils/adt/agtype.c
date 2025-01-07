@@ -32,7 +32,8 @@
 #include "varatt.h"
 #include "utils/jsonfuncs.h"
 #include <math.h>
-
+#include <string.h>
+#include <time.h>
 #include <float.h>
 
 #include "access/genam.h"
@@ -5545,7 +5546,7 @@ static char *get_label_name(const char *graph_name, graphid element_graphid)
     {
         ereport(ERROR,
                 (errcode(ERRCODE_UNDEFINED_SCHEMA),
-                 errmsg("graphid %lu does not exist", element_graphid)));
+                 errmsg("graphid %lld does not exist", element_graphid)));
     }
 
     /* get the tupdesc - we don't need to release this one */
@@ -5604,7 +5605,7 @@ static Datum get_vertex(const char *graph, const char *vertex_label,
     {
         ereport(ERROR,
                 (errcode(ERRCODE_UNDEFINED_TABLE),
-                 errmsg("graphid %lu does not exist", graphid)));
+                 errmsg("graphid %ld does not exist", graphid)));
     }
 
     /* get the tupdesc - we don't need to release this one */
@@ -7444,7 +7445,7 @@ Datum age_tostringlist(PG_FUNCTION_ARGS)
 
         case AGTV_INTEGER:
 
-            sprintf(buffer, "%ld", elem->val.int_value);
+            sprintf(buffer, "%lld", elem->val.int_value);
             string_elem.val.string.val = pstrdup(buffer);
             string_elem.val.string.len = strlen(buffer);
 
