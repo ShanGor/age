@@ -82,6 +82,12 @@ Please navigate to the [release page](https://github.com/ShanGor/apache-age-wind
   cd apache-age-windows
   make install
   ```
+4. If failed at cypher_gram_def.h, change below VARIABLE names:
+  STRING -> CG_STRING
+  CHAR -> CG_CHAR
+  DELETE -> CG_DELETE
+  OPTIONAL -> CG_OPTIONAL
+  IN -> CG_IN
 
 <h2><img height="20" src="/img/community.svg">&nbsp;&nbsp;Contributing</h2>
 
