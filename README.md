@@ -67,6 +67,39 @@ Please navigate to the [release page](https://github.com/ShanGor/apache-age-wind
 - `pgsql17-mingw64-x86-dependencies.7z`: Dependencies to enable the PG with icu, ssl, lz4, zstd etc. You can extract the files to the PG folder, or just copy those DLL files.
 - `pgAdmin4-8.14-windows-x86_64.7z`: `pgAdmin 4` v8.14 for Windows.
 
+# How to start it?
+- Download the pre-compiled package from the release page. 
+- Your folder structure might be look like this
+  ```
+  c:\swdtools\PostgreSQL
+   |- data
+   |- pgAdmin4
+   |- pgsql17-dependencies
+   |- pgsql17-mingw
+  ```
+- Initialize the database: `C:\swdtools\PostgreSQL\pgsql17-mingw\bin\initdb -D C:\swdtools\PostgreSQL\data`
+- Prepare some start / stop script like this:
+  - start-pg-server.bat
+  ```
+  @echo off
+  set PATH_O=%PATH%
+  set PATH=C:\swdtools\PostgreSQL\pgsql17-mingw\bin;%PATH%
+  set PATH=C:\swdtools\PostgreSQL\pgsql17-dependencies\bin;%PATH%
+  pg_ctl -D C:\swdtools\PostgreSQL\data -l C:\swdtools\PostgreSQL\pg.log start
+  set PATH=%PATH_O%
+  echo on
+  ```
+  - stop-pg-server.bat
+  ```
+  @echo off
+  set PATH_O=%PATH%
+  set PATH=D:\swdtools\PostgreSQL\pgsql17-mingw\bin;D:\swdtools\PostgreSQL\pgsql17-dependencies\bin;%PATH%
+  pg_ctl -D D:\swdtools\PostgreSQL\data stop
+  set PATH=%PATH_O%
+  echo on
+  @pause
+  ```
+
 # Steps to compile if you want to do it on your machine:
 1. Install MSYS2-MINGW64, and install the following packages:
    ```
