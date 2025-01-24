@@ -77,24 +77,29 @@ Please navigate to the [release page](https://github.com/ShanGor/apache-age-wind
    |- pgsql17-dependencies
    |- pgsql17-mingw
   ```
-- Initialize the database: `C:\swdtools\PostgreSQL\pgsql17-mingw\bin\initdb -D C:\swdtools\PostgreSQL\data`
+- Initialize the database: 
+  ```
+  set PATH=C:\swdtools\PostgreSQL\pgsql17-mingw\bin;C:\swdtools\PostgreSQL\pgsql17-dependencies\bin;%PATH%
+  initdb -D C:\swdtools\PostgreSQL\data
+  ```
 - Prepare some start / stop script like this:
   - start-pg-server.bat
   ```
   @echo off
+  set PGDIR=%~dp0
   set PATH_O=%PATH%
-  set PATH=C:\swdtools\PostgreSQL\pgsql17-mingw\bin;%PATH%
-  set PATH=C:\swdtools\PostgreSQL\pgsql17-dependencies\bin;%PATH%
-  pg_ctl -D C:\swdtools\PostgreSQL\data -l C:\swdtools\PostgreSQL\pg.log start
+  set PATH=%PGDIR%\pgsql17-mingw\bin;%PGDIR%\pgsql17-dependencies\bin;%PATH%
+  pg_ctl -D %PGDIR%\data -l %PGDIR%\pg.log start
   set PATH=%PATH_O%
   echo on
   ```
   - stop-pg-server.bat
   ```
   @echo off
+  set PGDIR=%~dp0
   set PATH_O=%PATH%
-  set PATH=D:\swdtools\PostgreSQL\pgsql17-mingw\bin;D:\swdtools\PostgreSQL\pgsql17-dependencies\bin;%PATH%
-  pg_ctl -D D:\swdtools\PostgreSQL\data stop
+  set PATH=%PGDIR%\pgsql17-mingw\bin;%PGDIR%\pgsql17-dependencies\bin;%PATH%
+  pg_ctl -D %PGDIR%\data stop
   set PATH=%PATH_O%
   echo on
   @pause
